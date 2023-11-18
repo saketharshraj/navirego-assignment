@@ -1,6 +1,7 @@
 import React from 'react';
 import CustomCheckbox from '../components/CustomCheckbox';
 import './TableContainer.css';
+import LetterBox from '../components/LetterBox';
 
 interface TableContainerProps {
     checkboxCount: number;
@@ -26,8 +27,7 @@ const TableContainer: React.FC<TableContainerProps> = ({ checkboxCount }) => {
                     })}
                 </div>
                 <div>
-                    <CustomCheckbox label='1' />
-                    <CustomCheckbox label='1' />
+                    <LetterBox checkboxNumber={2} />
                 </div>
             </>
         </div>
