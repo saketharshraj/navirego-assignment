@@ -1,0 +1,21 @@
+/* TableContainer.css */
+.container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  border: 5px solid #ccc; 
+  gap: 5px;
+  padding: 20px; 
+  max-width: 600px; 
+  margin: auto; 
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.container > div {
+  display: flex;
+  justify-content: space-around; 
+  width: 100%; 
+  gap: 40vh;
+}
