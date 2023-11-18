@@ -38,9 +38,15 @@ const TableContainer: React.FC<TableContainerProps> = ({ checkboxCount }) => {
                 )}
             </div>
             <div>
-                {checkedIndices.map((index) => (
-                    <LetterBox key={index} checkboxNumber={index} />
-                ))}
+                {checkedIndices.length ? (
+                    <>
+                        {checkedIndices.map((index) => {
+                            return <LetterBox key={index} checkboxNumber={index} />;
+                        })}
+                    </>
+                ) : (
+                    <div style={{ width: '240px' }}>Click at-least one check box to start loading letters from the Letters API</div>
+                )}
             </div>
         </div>
     );
