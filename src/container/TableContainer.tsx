@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CustomCheckbox from '../components/CustomCheckbox';
 import './TableContainer.css';
 import LetterBox from '../components/LetterBox';
@@ -8,28 +8,40 @@ interface TableContainerProps {
 }
 
 const TableContainer: React.FC<TableContainerProps> = ({ checkboxCount }) => {
-    const initialSetupData = Array.from(
-        { length: checkboxCount },
-        (_, index) => index,
-    );
-    console.log(initialSetupData);
+    const [checkedIndices, setCheckedIndices] = useState<number[]>([]);
+
+    const handleCheckboxChange = (index: number) => {
+        setCheckedIndices((prev) => {
+            const currentIndex = prev.indexOf(index);
+            if (currentIndex === -1) {
+                // Checkbox is being checked, add it to the array
+                return [...prev, index];
+            } else {
+                // Checkbox is being unchecked, remove it from the array
+                return prev.filter((i) => i !== index);
+            }
+        });
+    };
+
     return (
         <div className='container'>
-            <>
-                <div>
-                    {initialSetupData.map((num) => {
-                        return (
-                            <CustomCheckbox
-                                key={Math.random().toString() + num.toString()}
-                                label={num.toString()}
-                            />
-                        );
-                    })}
-                </div>
-                <div>
-                    <LetterBox checkboxNumber={2} />
-                </div>
-            </>
+            <div>
+                {Array.from({ length: checkboxCount }, (_, i) => i).map(
+                    (index) => (
+                        <CustomCheckbox
+                            key={index}
+                            label={index.toString()}
+                            isChecked={checkedIndices.includes(index)}
+                            onCheckboxChange={() => handleCheckboxChange(index)}
+                        />
+                    ),
+                )}
+            </div>
+            <div>
+                {checkedIndices.map((index) => (
+                    <LetterBox key={index} checkboxNumber={index} />
+                ))}
+            </div>
         </div>
     );
 };

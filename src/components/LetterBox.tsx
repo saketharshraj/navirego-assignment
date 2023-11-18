@@ -19,7 +19,7 @@ const LetterBox: React.FC<{ checkboxNumber: number }> = ({
                 setRetryCount((prev) => prev + 1);
                 setTimeout(fetchAndUpdateLetter, 0); // Retry immediately
             } else {
-                setRetryCount(0); // Reset retry count after 3 retries
+                setRetryCount(0); // Reset retry count after retries runs out
             }
         }
     };
@@ -30,8 +30,9 @@ const LetterBox: React.FC<{ checkboxNumber: number }> = ({
     }, [checkboxNumber]);
 
     return (
-        <div>
-            <div style={{ width: '240px', height: '240px' }}>{letter}</div>
+        <div style={{ position: 'relative', display: 'flex', gap: '2px'}}>
+            <div>{checkboxNumber}.</div>
+            <div style={{ width: '240px', maxHeight: '240px' }}>{letter}</div>
         </div>
     );
 };

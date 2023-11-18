@@ -1,25 +1,19 @@
-// CustomCheckbox.tsx
-import React, { useState } from 'react';
-import './CustomCheckbox.css'; // Import the CSS file for styles
+import './CustomCheckbox.css';
 
 interface CustomCheckboxProps {
     label: string;
+    isChecked: boolean;
+    onCheckboxChange: (isChecked: boolean) => void;
 }
 
-const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ label }) => {
-    const [isChecked, setIsChecked] = useState(false);
-
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked);
-    };
-
+const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ label, isChecked, onCheckboxChange }) => {
     return (
         <label className='checkbox-container'>
             {label}
             <input
                 type='checkbox'
                 checked={isChecked}
-                onChange={handleCheckboxChange}
+                onChange={() => onCheckboxChange(!isChecked)}
             />
             <span className='checkmark'></span>
         </label>
@@ -27,4 +21,3 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({ label }) => {
 };
 
 export default CustomCheckbox;
-
